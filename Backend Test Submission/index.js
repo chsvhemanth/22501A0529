@@ -41,10 +41,10 @@ if(code){
 const expiry = new Date(Date.now()+validity*60*1000).toISOString();
 urlmapper.set(code,{url,expiry});
 await log("backend","info","route","Shortened URL Created: ${code}");
-return res.status(201).json({shortlink:"https://hostname:port/${code}",expiry});
+return res.status(201).json({ shortlink: `https://hostname:port/${code}`, expiry });
 });
 
-app.get('/:shortcode',async(req,res)=>{
+app.get('/shorturls/:shortcode',async(req,res)=>{
   const{shortcode}=req.params;
   const entry=urlmapper.get(shortcode);
   if(!entry){
